@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/account.dart';
+import 'package:project/Screens/account.dart';
+import 'package:project/Screens/home.dart';
+
 import 'package:project/db/db-function.dart';
-import 'package:project/home.dart';
 
 import 'package:project/model/data_model.dart';
 

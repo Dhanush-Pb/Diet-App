@@ -1,14 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/model/data_breakfast.dart';
 
-class BreakfastView extends StatefulWidget {
-  const BreakfastView({super.key});
+class BreakfastView extends StatelessWidget {
+  final BreakfastModel Drfood;
+  const BreakfastView({
+    super.key,
+    required this.Drfood,
+  });
 
-  @override
-  State<BreakfastView> createState() => _BreakfastViewState();
-}
-
-class _BreakfastViewState extends State<BreakfastView> {
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
@@ -42,20 +44,25 @@ class _BreakfastViewState extends State<BreakfastView> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  CircleAvatar(
+                    backgroundImage: FileImage(File(Drfood.imagepath)),
+                    radius: 70,
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 80, width: 350),
+                  container(height: 70, width: 350, value: Drfood.title),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 160, width: 350),
+                  container(height: 120, width: 350, value: Drfood.ingredients),
                   const SizedBox(
                     height: 20,
                   ),
                   container(
                     height: 180,
                     width: 350,
+                    value: Drfood.prepration,
                   ),
                 ],
               ),
@@ -64,7 +71,7 @@ class _BreakfastViewState extends State<BreakfastView> {
     );
   }
 
-  Widget container({double? height, double? width}) {
+  Widget container({double? height, double? width, required String value}) {
     return Container(
       height: height ?? 90, // If height is not provided, default to 90
       width: width ?? 350, // If width is not provided, default to 350
@@ -72,8 +79,18 @@ class _BreakfastViewState extends State<BreakfastView> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Color.fromARGB(255, 226, 218, 206),
       ),
-      child: const Column(
-        children: [Text('')],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                value,
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

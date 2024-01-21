@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project/model/data_lunch.dart';
 
 class Lunchmake extends StatefulWidget {
   const Lunchmake({super.key});
@@ -12,9 +14,9 @@ class Lunchmake extends StatefulWidget {
 }
 
 class _LunchmakeState extends State<Lunchmake> {
-  final _titilecontroler = TextEditingController();
-  final _ingrediencecontroller = TextEditingController();
-  final _preparationcontroller = TextEditingController();
+  final titilecontroler = TextEditingController();
+  final ingrediencecontroller = TextEditingController();
+  final preparationcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   File? _image;
@@ -56,7 +58,8 @@ class _LunchmakeState extends State<Lunchmake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _titilecontroler,
+                      maxLines: 1,
+                      controller: titilecontroler,
                       key: const Key('Title'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -68,7 +71,7 @@ class _LunchmakeState extends State<Lunchmake> {
                         ),
                         labelText: 'Recipe name',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
+                            const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -85,7 +88,8 @@ class _LunchmakeState extends State<Lunchmake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _ingrediencecontroller,
+                      maxLines: 3,
+                      controller: ingrediencecontroller,
                       key: const Key('Ingredients'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -97,7 +101,7 @@ class _LunchmakeState extends State<Lunchmake> {
                         ),
                         labelText: 'Ingredients',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                            const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -114,7 +118,8 @@ class _LunchmakeState extends State<Lunchmake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _preparationcontroller,
+                      maxLines: 6,
+                      controller: preparationcontroller,
                       key: const Key('Preparation'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -126,7 +131,7 @@ class _LunchmakeState extends State<Lunchmake> {
                         ),
                         labelText: 'Preparation',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 60.0, 20.0, 60.0),
+                            const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -158,6 +163,8 @@ class _LunchmakeState extends State<Lunchmake> {
                       if (_formKey.currentState!.validate()) {
                         // Do something with the form data
                         // For example, save the data to a database
+                        _addlunchModel();
+                        _showsnackbar(context, 'Recipe added successfully');
                         Navigator.of(context).pop();
                       }
                     },
@@ -181,5 +188,28 @@ class _LunchmakeState extends State<Lunchmake> {
         _image = File(pickedFile.path);
       }
     });
+  }
+
+  Future<void> _addlunchModel() async {
+    final Box<LunchMOdel> lunchBox =
+        await Hive.openBox<LunchMOdel>('lunchrecipes');
+    final LunchMOdel newlunch = LunchMOdel(
+        titilecontroler.text,
+        ingrediencecontroller.text,
+        preparationcontroller.text,
+        _image?.path ?? '');
+
+    lunchBox.add(newlunch);
+  }
+
+  void _showsnackbar(BuildContext context, String mesg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Color.fromARGB(255, 37, 119, 185),
+        content: Text(mesg),
+        duration: Duration(seconds: 1),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 }

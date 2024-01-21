@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/account.dart';
+import 'package:project/Screens/account.dart';
 import 'package:project/Screens/home1.dart';
 import 'package:project/resipes/resipes.dart';
 

@@ -2,7 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:project/model/data_breakfast.dart';
 
 class BreakfastMake extends StatefulWidget {
   const BreakfastMake({super.key});
@@ -12,9 +14,9 @@ class BreakfastMake extends StatefulWidget {
 }
 
 class _BreakfastMakeState extends State<BreakfastMake> {
-  final _titilecontroler = TextEditingController();
-  final _ingrediencecontroller = TextEditingController();
-  final _preparationcontroller = TextEditingController();
+  final titilecontroler = TextEditingController();
+  final ingrediencecontroller = TextEditingController();
+  final preparationcontroller = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   File? _image;
 
@@ -55,7 +57,8 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _titilecontroler,
+                      maxLines: 1,
+                      controller: titilecontroler,
                       key: const Key('Title'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -67,7 +70,7 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                         ),
                         labelText: 'Recipe name',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 10.0),
+                            const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -84,7 +87,8 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _ingrediencecontroller,
+                      maxLines: 3,
+                      controller: ingrediencecontroller,
                       key: const Key('Ingredients'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -96,7 +100,7 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                         ),
                         labelText: 'Ingredients',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+                            const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -113,7 +117,8 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
-                      controller: _preparationcontroller,
+                      maxLines: 6,
+                      controller: preparationcontroller,
                       key: const Key('Preparation'),
                       keyboardType: TextInputType.name,
                       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -125,7 +130,7 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                         ),
                         labelText: 'Preparation',
                         contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 60.0, 20.0, 60.0),
+                            const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -157,6 +162,8 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                       if (_formKey.currentState!.validate()) {
                         // Do something with the form data
                         // For example, save the data to a database
+                        _addbreakfastmodel();
+                        _showsnackbar(context, 'Recipe added successfully');
                         Navigator.of(context).pop();
                       }
                     },
@@ -180,5 +187,29 @@ class _BreakfastMakeState extends State<BreakfastMake> {
         _image = File(pickedFile.path);
       }
     });
+  }
+
+  Future<void> _addbreakfastmodel() async {
+    final Box<BreakfastModel> breakfastBox =
+        await Hive.openBox<BreakfastModel>('breakreipes');
+
+    final BreakfastModel newbreakfast = BreakfastModel(
+        titilecontroler.text,
+        ingrediencecontroller.text,
+        preparationcontroller.text,
+        _image?.path ?? '');
+
+    breakfastBox.add(newbreakfast);
+  }
+
+  void _showsnackbar(BuildContext context, String mesg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Color.fromARGB(255, 37, 119, 185),
+        content: Text(mesg),
+        duration: Duration(seconds: 1),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 }

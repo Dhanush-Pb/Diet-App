@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/calorie.dart';
+import 'package:project/Screens/calorie.dart';
+
+import 'package:project/db/db-function.dart';
 
 import 'package:project/model/data_model.dart';
-
-import 'db/db-function.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -236,12 +236,12 @@ class _ProfileState extends State<Profile> {
                       child: DropdownButtonFormField<String>(
                         items: const [
                           DropdownMenuItem(
-                            child: Text("Male"),
                             value: "Male",
+                            child: Text("Male"),
                           ),
                           DropdownMenuItem(
-                            child: Text("Female"),
                             value: "Female",
+                            child: Text("Female"),
                           ),
                         ],
                         value: _sexcontroler,
@@ -278,16 +278,16 @@ class _ProfileState extends State<Profile> {
                 child: DropdownButtonFormField<String>(
                   items: const [
                     DropdownMenuItem(
-                      child: Text("Gain weight"),
                       value: "Gain Weight",
+                      child: Text("Gain weight"),
                     ),
                     DropdownMenuItem(
-                      child: Text("Maintain Weight"),
                       value: "Maintain Weight",
+                      child: Text("Maintain Weight"),
                     ),
                     DropdownMenuItem(
-                      child: Text('Lose weight'),
                       value: ('Lose weight'),
+                      child: Text('Lose weight'),
                     )
                   ],
                   value: _goalcontroler,

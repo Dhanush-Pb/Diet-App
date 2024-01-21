@@ -1,14 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/model/data_lunch.dart';
 
-class Lunchview extends StatefulWidget {
-  const Lunchview({super.key});
+class Lunchview extends StatelessWidget {
+  // ignore: non_constant_identifier_names
+  final LunchMOdel Lrfood;
 
-  @override
-  State<Lunchview> createState() => _LunchviewState();
-}
+  const Lunchview({Key? key, required this.Lrfood}) : super(key: key);
 
-class _LunchviewState extends State<Lunchview> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,20 +42,25 @@ class _LunchviewState extends State<Lunchview> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  CircleAvatar(
+                    radius: 70,
+                    backgroundImage: FileImage(File(Lrfood.imagepath)),
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 80, width: 350),
+                  container(height: 70, width: 350, value: Lrfood.title),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 160, width: 350),
+                  container(height: 120, width: 350, value: Lrfood.ingredients),
                   const SizedBox(
                     height: 20,
                   ),
                   container(
-                    height: 180,
+                    height: 160,
                     width: 350,
+                    value: Lrfood.prepration,
                   ),
                 ],
               ),
@@ -63,7 +69,7 @@ class _LunchviewState extends State<Lunchview> {
     );
   }
 
-  Widget container({double? height, double? width}) {
+  Widget container({double? height, double? width, required String value}) {
     return Container(
       height: height ?? 90, // If height is not provided, default to 90
       width: width ?? 350, // If width is not provided, default to 350
@@ -71,8 +77,18 @@ class _LunchviewState extends State<Lunchview> {
         borderRadius: BorderRadius.all(Radius.circular(20)),
         color: Color.fromARGB(255, 226, 218, 206),
       ),
-      child: const Column(
-        children: [Text('')],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Text(
+                value,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

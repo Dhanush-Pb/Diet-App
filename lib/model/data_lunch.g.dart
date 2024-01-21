@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'data_breakfast.dart';
+part of 'data_lunch.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class BreakfastModelAdapter extends TypeAdapter<BreakfastModel> {
+class LunchMOdelAdapter extends TypeAdapter<LunchMOdel> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  BreakfastModel read(BinaryReader reader) {
+  LunchMOdel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return BreakfastModel(
+    return LunchMOdel(
       fields[0] as String,
       fields[1] as String,
       fields[2] as String,
@@ -25,7 +25,7 @@ class BreakfastModelAdapter extends TypeAdapter<BreakfastModel> {
   }
 
   @override
-  void write(BinaryWriter writer, BreakfastModel obj) {
+  void write(BinaryWriter writer, LunchMOdel obj) {
     writer
       ..writeByte(4)
       ..writeByte(0)
@@ -44,7 +44,7 @@ class BreakfastModelAdapter extends TypeAdapter<BreakfastModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is BreakfastModelAdapter &&
+      other is LunchMOdelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

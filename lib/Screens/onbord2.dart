@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/onbord3.dart';
-import 'package:project/onbord1.dart';
-import 'package:project/profile.dart';
+import 'package:project/Screens/onbord1.dart';
+import 'package:project/Screens/onbord3.dart';
+import 'package:project/Screens/profile.dart';
 
 class InBorder22 extends StatefulWidget {
   const InBorder22({Key? key}) : super(key: key);
