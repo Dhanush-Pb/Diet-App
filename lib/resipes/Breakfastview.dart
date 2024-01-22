@@ -3,19 +3,35 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/model/data_breakfast.dart';
+import 'package:project/resipes/BreakfastEdit.dart';
 
 class BreakfastView extends StatelessWidget {
-  final BreakfastModel Drfood;
   const BreakfastView({
     super.key,
     required this.Drfood,
   });
+  final BreakfastModel Drfood;
 
   @override
   Widget build(BuildContext context) {
     // ignore: prefer_const_constructors
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    // ignore: prefer_const_constructors
+                    .push(MaterialPageRoute(
+                        builder: (context) => BreakfastEdit(
+                              Drfood: Drfood,
+                            )));
+              },
+              icon: const Icon(
+                Icons.edit,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ))
+        ],
         centerTitle: true,
         title: Text(
           ' Breakfast Recipe',
@@ -44,6 +60,9 @@ class BreakfastView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
                   CircleAvatar(
                     backgroundImage: FileImage(File(Drfood.imagepath)),
                     radius: 70,
@@ -51,11 +70,11 @@ class BreakfastView extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 70, width: 350, value: Drfood.title),
+                  container(height: 60, width: 350, value: Drfood.title),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 120, width: 350, value: Drfood.ingredients),
+                  container(height: 110, width: 350, value: Drfood.ingredients),
                   const SizedBox(
                     height: 20,
                   ),
@@ -75,18 +94,20 @@ class BreakfastView extends StatelessWidget {
     return Container(
       height: height ?? 90, // If height is not provided, default to 90
       width: width ?? 350, // If width is not provided, default to 350
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color.fromARGB(255, 226, 218, 206),
+      decoration: BoxDecoration(
+        border: Border.all(width: .2),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: const Color.fromARGB(255, 255, 255, 255),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(10),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
                 value,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
               )
             ],
           ),

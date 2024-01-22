@@ -57,6 +57,7 @@ class _BreakfastMakeState extends State<BreakfastMake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
+                      maxLength: 20,
                       maxLines: 1,
                       controller: titilecontroler,
                       key: const Key('Title'),
@@ -205,9 +206,9 @@ class _BreakfastMakeState extends State<BreakfastMake> {
   void _showsnackbar(BuildContext context, String mesg) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Color.fromARGB(255, 37, 119, 185),
+        backgroundColor: const Color.fromARGB(255, 37, 119, 185),
         content: Text(mesg),
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         behavior: SnackBarBehavior.floating,
       ),
     );

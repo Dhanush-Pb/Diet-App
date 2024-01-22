@@ -150,7 +150,7 @@ class _LunchState extends State<Lunch> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Lunchmake()));
+              .push(MaterialPageRoute(builder: (context) => const Lunchmake()));
         },
         shape: const CircleBorder(),
         child: const Icon(Icons.add),
@@ -163,21 +163,21 @@ class _LunchState extends State<Lunch> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete recipe'),
+          title: const Text('Delete recipe'),
           content: Text('Are you sure want to delete ${lrfood.title}'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('No'),
+              child: const Text('No'),
             ),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   _delete(lrfood);
                 },
-                child: Text('Yes'))
+                child: const Text('Yes'))
           ],
         );
       },

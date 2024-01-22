@@ -1,19 +1,33 @@
+// ignore: file_names
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/model/data_lunch.dart';
+import 'package:project/resipes/lunchedit.dart';
 
 class Lunchview extends StatelessWidget {
   // ignore: non_constant_identifier_names
   final LunchMOdel Lrfood;
 
+  // ignore: non_constant_identifier_names
   const Lunchview({Key? key, required this.Lrfood}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => LunchEdit(lrfood: Lrfood)));
+              },
+              icon: const Icon(
+                Icons.edit,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ))
+        ],
         centerTitle: true,
         title: Text(
           ' Lunch Recipe',
@@ -42,6 +56,9 @@ class Lunchview extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
                   CircleAvatar(
                     radius: 70,
                     backgroundImage: FileImage(File(Lrfood.imagepath)),
@@ -49,11 +66,11 @@ class Lunchview extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 70, width: 350, value: Lrfood.title),
+                  container(height: 60, width: 350, value: Lrfood.title),
                   const SizedBox(
                     height: 20,
                   ),
-                  container(height: 120, width: 350, value: Lrfood.ingredients),
+                  container(height: 110, width: 350, value: Lrfood.ingredients),
                   const SizedBox(
                     height: 20,
                   ),
@@ -73,9 +90,10 @@ class Lunchview extends StatelessWidget {
     return Container(
       height: height ?? 90, // If height is not provided, default to 90
       width: width ?? 350, // If width is not provided, default to 350
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color.fromARGB(255, 226, 218, 206),
+      decoration: BoxDecoration(
+        border: Border.all(width: .2),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: const Color.fromARGB(255, 255, 255, 255),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -84,7 +102,8 @@ class Lunchview extends StatelessWidget {
             children: [
               Text(
                 value,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               )
             ],
           ),

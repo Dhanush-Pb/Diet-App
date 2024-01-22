@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project/model/data_breakfast.dart';
-import 'package:project/resipes/Breakfastmake.dart';
-import 'package:project/resipes/Breakfastview.dart';
+import 'package:project/resipes/breakfastmake.dart';
+import 'package:project/resipes/breakfastview.dart';
 
+// ignore: camel_case_types
 class breakfast extends StatefulWidget {
   const breakfast({super.key});
 
@@ -14,6 +15,7 @@ class breakfast extends StatefulWidget {
   State<breakfast> createState() => _breakfastState();
 }
 
+// ignore: camel_case_types
 class _breakfastState extends State<breakfast> {
   @override
   Widget build(BuildContext context) {
@@ -123,7 +125,8 @@ class _breakfastState extends State<breakfast> {
                                           Icons.delete,
                                           size: 30,
                                         ),
-                                        color: Colors.white,
+                                        color: const Color.fromARGB(
+                                            255, 255, 255, 255),
                                         onPressed: () {
                                           _deletNotification(brfood);
                                           // Handle delete action
@@ -160,21 +163,21 @@ class _breakfastState extends State<breakfast> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete recipe'),
+          title: const Text('Delete recipe'),
           content: Text('Are you sure want to delete ${brfood.title}'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('No'),
+              child: const Text('No'),
             ),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   _delete(brfood);
                 },
-                child: Text('Yes'))
+                child: const Text('Yes'))
           ],
         );
       },

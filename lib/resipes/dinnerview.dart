@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/model/data_dinner.dart';
+import 'package:project/resipes/Dinneredit.dart';
 
 class Dinnerview extends StatelessWidget {
 //   final Drfood drfood;
@@ -15,6 +16,17 @@ class Dinnerview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => DinnerEdit(drfood: drfood)));
+              },
+              icon: const Icon(
+                Icons.edit,
+                color: Color.fromARGB(255, 255, 255, 255),
+              ))
+        ],
         centerTitle: true,
         title: Text(
           ' Dinner Recipe',
@@ -54,11 +66,11 @@ class Dinnerview extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                container(height: 70, width: 350, value: drfood.title),
+                container(height: 60, width: 350, value: drfood.title),
                 const SizedBox(
                   height: 20,
                 ),
-                container(height: 120, width: 350, value: drfood.ingredients),
+                container(height: 110, width: 350, value: drfood.ingredients),
                 const SizedBox(
                   height: 20,
                 ),
@@ -79,9 +91,10 @@ class Dinnerview extends StatelessWidget {
     return Container(
       height: height ?? 90,
       width: width ?? 350,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        color: Color.fromARGB(255, 226, 218, 206),
+      decoration: BoxDecoration(
+        border: Border.all(width: .2),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: const Color.fromARGB(255, 255, 255, 255),
       ),
       child: SingleChildScrollView(
         child: Column(

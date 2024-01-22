@@ -24,7 +24,7 @@ class _DinnerMakeState extends State<DinnerMake> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Create Lunch Recipe',
+          'Create Dinner Recipe',
           style: GoogleFonts.actor(
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -55,6 +55,7 @@ class _DinnerMakeState extends State<DinnerMake> {
                   Padding(
                     padding: const EdgeInsets.all(20),
                     child: TextFormField(
+                      maxLength: 20,
                       maxLines: 1,
                       controller: titleController,
                       key: const Key('Title'),
