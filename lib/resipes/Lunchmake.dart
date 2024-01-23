@@ -22,6 +22,9 @@ class _LunchmakeState extends State<Lunchmake> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -29,15 +32,16 @@ class _LunchmakeState extends State<Lunchmake> {
           'Create Lunch Recipe',
           style: GoogleFonts.actor(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize:
+                screenWidth * 0.06, // Adjust font size based on screen width
             color: const Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),
       ),
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+        width: screenWidth,
+        height: screenHeight,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -55,7 +59,11 @@ class _LunchmakeState extends State<Lunchmake> {
               child: Column(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.only(
+                      top: screenHeight * 0.04,
+                      left: screenWidth * 0.05,
+                      right: screenWidth * 0.05,
+                    ),
                     child: TextFormField(
                       maxLength: 20,
                       maxLines: 1,
@@ -70,8 +78,12 @@ class _LunchmakeState extends State<Lunchmake> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         labelText: 'Recipe name',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 8.0, 20.0, 8.0),
+                        contentPadding: EdgeInsets.fromLTRB(
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -82,11 +94,8 @@ class _LunchmakeState extends State<Lunchmake> {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(screenWidth * 0.05),
                     child: TextFormField(
                       maxLines: 3,
                       controller: ingrediencecontroller,
@@ -100,8 +109,12 @@ class _LunchmakeState extends State<Lunchmake> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         labelText: 'Ingredients',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                        contentPadding: EdgeInsets.fromLTRB(
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -112,11 +125,8 @@ class _LunchmakeState extends State<Lunchmake> {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
                   Padding(
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(screenWidth * 0.05),
                     child: TextFormField(
                       maxLines: 6,
                       controller: preparationcontroller,
@@ -130,8 +140,12 @@ class _LunchmakeState extends State<Lunchmake> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         labelText: 'Preparation',
-                        contentPadding:
-                            const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 20.0),
+                        contentPadding: EdgeInsets.fromLTRB(
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                          screenWidth * 0.05,
+                          screenHeight * 0.02,
+                        ),
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -143,14 +157,14 @@ class _LunchmakeState extends State<Lunchmake> {
                     ),
                   ),
                   CircleAvatar(
-                    radius: 70,
+                    radius: screenHeight * 0.09,
                     backgroundImage: _image != null ? FileImage(_image!) : null,
                     child: _image == null
                         ? IconButton(
                             onPressed: _getImage,
                             icon: Image.asset(
                               'lib/asset/order-food.png',
-                              width: 85,
+                              width: screenWidth * 0.3,
                             ),
                           )
                         : null,
@@ -161,8 +175,6 @@ class _LunchmakeState extends State<Lunchmake> {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // Do something with the form data
-                        // For example, save the data to a database
                         _addlunchModel();
                         _showsnackbar(context, 'Recipe added successfully');
                         Navigator.of(context).pop();
@@ -194,10 +206,11 @@ class _LunchmakeState extends State<Lunchmake> {
     final Box<LunchMOdel> lunchBox =
         await Hive.openBox<LunchMOdel>('lunchrecipes');
     final LunchMOdel newlunch = LunchMOdel(
-        titilecontroler.text,
-        ingrediencecontroller.text,
-        preparationcontroller.text,
-        _image?.path ?? '');
+      titilecontroler.text,
+      ingrediencecontroller.text,
+      preparationcontroller.text,
+      _image?.path ?? '',
+    );
 
     lunchBox.add(newlunch);
   }

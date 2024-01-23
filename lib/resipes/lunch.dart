@@ -95,27 +95,28 @@ class _LunchState extends State<Lunch> {
                                   child: Stack(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 30, top: 15),
-                                        child: Column(
-                                          children: [
-                                            CircleAvatar(
-                                              radius: 55,
-                                              backgroundImage: FileImage(
-                                                  File(lrfood.imagepath)),
-                                              // Replace with your image asset
-                                            ),
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Text(
-                                              lrfood.title,
-                                              style: GoogleFonts.actor(
-                                                  fontWeight: FontWeight.w500,
-                                                  color: const Color.fromARGB(
-                                                      255, 255, 255, 255)),
-                                            )
-                                          ],
+                                        padding: const EdgeInsets.only(top: 15),
+                                        child: Center(
+                                          child: Column(
+                                            children: [
+                                              CircleAvatar(
+                                                radius: 55,
+                                                backgroundImage: FileImage(
+                                                    File(lrfood.imagepath)),
+                                                // Replace with your image asset
+                                              ),
+                                              const SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                lrfood.title,
+                                                style: GoogleFonts.actor(
+                                                    fontWeight: FontWeight.w500,
+                                                    color: const Color.fromARGB(
+                                                        255, 255, 255, 255)),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       Positioned(

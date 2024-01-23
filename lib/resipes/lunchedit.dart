@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:project/model/data_dinner.dart';
 import 'package:project/model/data_lunch.dart';
 
 class LunchEdit extends StatefulWidget {
@@ -19,8 +18,6 @@ class _LunchEditState extends State<LunchEdit> {
 
   @override
   void initState() {
-    // TODO: implement initState
-
     ingredientcontroler.text = widget.lrfood.ingredients;
     preprationcontroller.text = widget.lrfood.prepration;
     super.initState();

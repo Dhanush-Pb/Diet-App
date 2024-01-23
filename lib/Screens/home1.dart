@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/Foods.dart/SelectedBreakfast.dart';
 import 'package:project/db/db-function.dart';
 import 'package:project/model/data_model.dart';
 
@@ -69,26 +70,6 @@ class _Home1State extends State<Home1> {
                   child: SafeArea(
                     child: SingleChildScrollView(
                       child: Column(children: [
-                        // Row(
-                        //   crossAxisAlignment: CrossAxisAlignment.end,
-                        //   mainAxisAlignment: MainAxisAlignment.end,
-                        //   children: [
-                        //     PopupMenuButton(
-                        //         icon: const Icon(Icons.more_vert),
-                        //         itemBuilder: (BuildContext context) {
-                        //           return [
-                        //             const PopupMenuItem(
-                        //               child: Text('About'),
-                        //               value: 'About',
-                        //             ),
-                        //             const PopupMenuItem(
-                        //               child: Text('Privacy policy'),
-                        //               value: 'privacy policy',
-                        //             ),
-                        //           ];
-                        //         }),
-                        //   ],
-                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,11 +146,24 @@ class _Home1State extends State<Home1> {
                                   ),
                                   const Spacer(),
                                   Spacer(),
-                                  IconButton(
-                                    onPressed: () {},
-                                    icon: Image.asset(
-                                      'lib/asset/read.png',
-                                      width: 30,
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pushReplacement(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BrakfastFood()));
+                                    },
+                                    child: IconButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BrakfastFood()));
+                                      },
+                                      icon: Image.asset(
+                                        'lib/asset/read.png',
+                                        width: 30,
+                                      ),
                                     ),
                                   ),
                                   const Spacer(),

@@ -49,27 +49,27 @@ class _UpdateState extends State<Update> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const Home()));
-            },
-            icon: Image.asset(
-              'lib/asset/exit.png',
-              width: 25,
-            )),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const Home()));
+          },
+          icon: Image.asset(
+            'lib/asset/exit.png',
+            width: screenWidth * 0.05,
+          ),
+        ),
         title: const Text(
           'Update Details',
           style: TextStyle(fontWeight: FontWeight.w400),
         ),
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(211, 245, 250, 1),
-        // leading: BackButton(onPressed: () {
-        //   Navigator.of(context)
-        //       .push(MaterialPageRoute(builder: (context) => const Account()));
-        // }),
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -86,10 +86,13 @@ class _UpdateState extends State<Update> {
           child: ListView(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 45, left: 20, right: 20),
+                padding: EdgeInsets.only(
+                    top: screenHeight * 0.05,
+                    left: screenWidth * 0.05,
+                    right: screenWidth * 0.05),
                 child: Container(
-                  height: 700,
-                  width: 290,
+                  height: screenHeight * 0.8,
+                  width: screenWidth * 0.9,
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1,
@@ -99,7 +102,7 @@ class _UpdateState extends State<Update> {
                     color: const Color.fromARGB(115, 255, 255, 255),
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(25),
+                    padding: EdgeInsets.all(screenHeight * 0.025),
                     child: Form(
                       key: _formKey,
                       child: ValueListenableBuilder(
@@ -122,8 +125,11 @@ class _UpdateState extends State<Update> {
                                     ),
                                     hintText: 'Name',
                                     labelText: 'Change your name',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        12.0, 8.0, 12.0, 8.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.02,
+                                        screenHeight * 0.01,
+                                        screenWidth * 0.02,
+                                        screenHeight * 0.01),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -149,8 +155,11 @@ class _UpdateState extends State<Update> {
                                     ),
                                     hintText: 'Height',
                                     labelText: 'Height : cm',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -176,8 +185,11 @@ class _UpdateState extends State<Update> {
                                     ),
                                     hintText: 'Weight',
                                     labelText: 'Weight : kg',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -188,32 +200,6 @@ class _UpdateState extends State<Update> {
                                   },
                                 ),
                                 const Spacer(),
-                                // TextFormField(
-                                //   controller: _dobController,
-                                //   key: const Key('DOB'),
-                                //   keyboardType: TextInputType.datetime,
-                                //   autovalidateMode:
-                                //       AutovalidateMode.onUserInteraction,
-                                //   decoration: InputDecoration(
-                                //     fillColor: const Color.fromARGB(
-                                //         255, 235, 246, 247),
-                                //     filled: true,
-                                //     border: OutlineInputBorder(
-                                //       borderRadius: BorderRadius.circular(10),
-                                //     ),
-                                //     labelText: 'DOB:     DD/MM/YYYY',
-                                //     contentPadding: const EdgeInsets.fromLTRB(
-                                //         20.0, 10.0, 20.0, 10.0),
-                                //   ),
-                                //   validator: (value) {
-                                //     if (value == null || value.isEmpty) {
-                                //       return ' UpdatDate of birth is required!';
-                                //     } else {
-                                //       return null;
-                                //     }
-                                //   },
-                                // ),
-                                // const Spacer(),
                                 TextFormField(
                                   controller: _ageController,
                                   key: const Key('Age'),
@@ -228,8 +214,11 @@ class _UpdateState extends State<Update> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     labelText: 'Age',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -254,8 +243,11 @@ class _UpdateState extends State<Update> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     labelText: 'Target weight',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -286,8 +278,11 @@ class _UpdateState extends State<Update> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     hintText: 'Sex',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -325,8 +320,11 @@ class _UpdateState extends State<Update> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     hintText: 'Your primary goal',
-                                    contentPadding: const EdgeInsets.fromLTRB(
-                                        20.0, 10.0, 20.0, 10.0),
+                                    contentPadding: EdgeInsets.fromLTRB(
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02,
+                                        screenWidth * 0.04,
+                                        screenHeight * 0.02),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -369,10 +367,6 @@ class _UpdateState extends State<Update> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    // side: const BorderSide(
-                                    //   color: Color.fromARGB(255, 165, 145, 146),
-                                    //   width: 1,
-                                    // ),
                                     foregroundColor: const Color.fromARGB(
                                         255, 255, 255, 255),
                                   ),
