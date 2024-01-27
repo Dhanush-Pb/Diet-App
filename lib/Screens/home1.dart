@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/Foods.dart/SelectedBreakfast.dart';
+import 'package:project/Foods.dart/Navigationconditions.dart';
+import 'package:project/Foods.dart/Selected_food.dart';
+import 'package:project/Foods.dart/allfoods.dart';
 import 'package:project/db/db-function.dart';
 import 'package:project/model/data_model.dart';
 
@@ -145,20 +147,29 @@ class _Home1State extends State<Home1> {
                                         fontWeight: FontWeight.w500),
                                   ),
                                   const Spacer(),
-                                  Spacer(),
+                                  const Spacer(),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).pushReplacement(
+                                      Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  BrakfastFood()));
+                                                  const Navcondition(
+                                                      appbartitle: 'Breakfast',
+                                                      appbarcolor:
+                                                          Color.fromARGB(255,
+                                                              41, 145, 95))));
                                     },
                                     child: IconButton(
                                       onPressed: () {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    BrakfastFood()));
+                                                    const Navcondition(
+                                                        appbartitle:
+                                                            'Breakfast',
+                                                        appbarcolor:
+                                                            Color.fromARGB(255,
+                                                                41, 145, 95))));
                                       },
                                       icon: Image.asset(
                                         'lib/asset/read.png',
@@ -208,7 +219,7 @@ class _Home1State extends State<Home1> {
                                     ),
                                     const Spacer(),
                                     const Spacer(),
-                                    Spacer(),
+                                    const Spacer(),
                                     const Text(
                                       'Lunch',
                                       style: TextStyle(
@@ -217,12 +228,36 @@ class _Home1State extends State<Home1> {
                                     ),
                                     const Spacer(),
                                     const Spacer(),
-                                    Spacer(),
+                                    const Spacer(),
                                     IconButton(
-                                      onPressed: () {},
-                                      icon: Image.asset(
-                                        'lib/asset/read.png',
-                                        width: 30,
+                                      onPressed: () {
+                                        Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (context) =>
+                                              const Navcondition(
+                                                  appbartitle: 'Lunch',
+                                                  appbarcolor: Color.fromARGB(
+                                                      255, 126, 16, 216)),
+                                        ));
+                                      },
+                                      icon: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Navcondition(
+                                                          appbartitle: "Lunch",
+                                                          appbarcolor:
+                                                              Color.fromARGB(
+                                                                  255,
+                                                                  126,
+                                                                  16,
+                                                                  216))));
+                                        },
+                                        child: Image.asset(
+                                          'lib/asset/read.png',
+                                          width: 30,
+                                        ),
                                       ),
                                     ),
                                     const Spacer(),
@@ -266,7 +301,7 @@ class _Home1State extends State<Home1> {
                                     const Spacer(),
                                     const Spacer(),
                                     const Spacer(),
-                                    Spacer(),
+                                    const Spacer(),
                                     const Text(
                                       'Dinner ',
                                       style: TextStyle(
@@ -275,12 +310,31 @@ class _Home1State extends State<Home1> {
                                     ),
                                     const Spacer(),
                                     const Spacer(),
-                                    Spacer(),
-                                    IconButton(
-                                      onPressed: () {},
-                                      icon: Image.asset(
-                                        'lib/asset/read.png',
-                                        width: 30,
+                                    const Spacer(),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const Navcondition(
+                                                        appbartitle: 'Dinner',
+                                                        appbarcolor: Color(
+                                                            0xFFF17C0E))));
+                                      },
+                                      child: IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const Navcondition(
+                                                          appbartitle: 'Dinner',
+                                                          appbarcolor: Color(
+                                                              0xFFF17C0E))));
+                                        },
+                                        icon: Image.asset(
+                                          'lib/asset/read.png',
+                                          width: 30,
+                                        ),
                                       ),
                                     ),
                                     const Spacer(),
@@ -289,6 +343,8 @@ class _Home1State extends State<Home1> {
                               ),
                             ),
                             const SizedBox(height: 60),
+
+                            //water part
 
                             Container(
                               height: 130,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Foods.dart/Breakfastfoods.dart';
-import 'package:project/Screens/home1.dart';
+import 'package:project/Foods.dart/allfoods.dart';
+import 'package:project/Screens/calorie.dart';
+import 'package:project/model/data_food.dart';
 
 class Addyfood extends StatefulWidget {
   const Addyfood({super.key});
@@ -15,7 +17,9 @@ class _AddyfoodState extends State<Addyfood> {
   final foodnamecontroler = TextEditingController();
   final caloriescontroller = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>(); // Add form key
+  final _formKey = GlobalKey<FormState>();
+
+// Add form key
 
   @override
   Widget build(BuildContext context) {
@@ -90,12 +94,18 @@ class _AddyfoodState extends State<Addyfood> {
                         padding: const EdgeInsets.only(left: 25, right: 25),
                         child: TextFormField(
                           controller: foodnamecontroler,
-                          maxLength: 10,
                           maxLines: 1,
                           key: const Key('Food name'),
                           keyboardType: TextInputType.name,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
+                            prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                'lib/asset/healthy-food.png',
+                                width: 30,
+                              ),
+                            ),
                             fillColor: const Color.fromARGB(255, 235, 246, 247),
                             filled: true,
                             border: OutlineInputBorder(
@@ -126,6 +136,13 @@ class _AddyfoodState extends State<Addyfood> {
                           keyboardType: TextInputType.number,
                           autovalidateMode: AutovalidateMode.onUserInteraction,
                           decoration: InputDecoration(
+                            prefixIcon: IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                'lib/asset/calories.png',
+                                width: 30,
+                              ),
+                            ),
                             fillColor: const Color.fromARGB(255, 235, 246, 247),
                             filled: true,
                             border: OutlineInputBorder(
@@ -152,13 +169,8 @@ class _AddyfoodState extends State<Addyfood> {
                         child: TextButton(
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const BreakfastfoodsList(),
-                                ),
-                              );
+                              _onadd(context);
+                              _showsnackbar(context, 'Added Sucecsses Fully');
                             }
                           },
                           style: TextButton.styleFrom(
@@ -187,5 +199,33 @@ class _AddyfoodState extends State<Addyfood> {
         ),
       ),
     );
+  }
+
+  void _showsnackbar(BuildContext context, String mesg) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: const Color.fromARGB(255, 40, 83, 226),
+        content: Text(mesg),
+        duration: const Duration(seconds: 2),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
+  }
+
+  void _onadd(BuildContext context) {
+    final name = foodnamecontroler.text;
+    final caloriestext = caloriescontroller.text;
+
+    if (name.isNotEmpty && caloriestext.isNotEmpty) {
+      final calories = int.parse(caloriestext);
+      final newFoodItem = Fooditem(name: name, calories: calories);
+
+      // Open the foodBox and add the new food item
+      final foodBox = Hive.box<Fooditem>('foodBox');
+      foodBox.add(newFoodItem);
+
+      // Close the current screen and return the new food item
+      Navigator.pop(context, newFoodItem);
+    }
   }
 }
