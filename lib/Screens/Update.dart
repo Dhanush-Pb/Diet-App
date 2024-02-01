@@ -261,12 +261,12 @@ class _UpdateState extends State<Update> {
                                 DropdownButtonFormField<String>(
                                   items: const [
                                     DropdownMenuItem(
-                                      child: Text("Male"),
                                       value: "Male",
+                                      child: Text("Male"),
                                     ),
                                     DropdownMenuItem(
-                                      child: Text("Female"),
                                       value: "Female",
+                                      child: Text("Female"),
                                     ),
                                   ],
                                   value: sexcontroller,
@@ -299,16 +299,16 @@ class _UpdateState extends State<Update> {
                                 DropdownButtonFormField<String>(
                                   items: const [
                                     DropdownMenuItem(
-                                      child: Text("Gain weight"),
                                       value: "Gain Weight",
+                                      child: Text("Gain weight"),
                                     ),
                                     DropdownMenuItem(
-                                      child: Text("Maintain Weight"),
                                       value: "Maintain Weight",
+                                      child: Text("Maintain Weight"),
                                     ),
                                     DropdownMenuItem(
-                                      child: Text('Lose weight'),
                                       value: ('Lose weight'),
+                                      child: Text('Lose weight'),
                                     )
                                   ],
                                   value: goalcontroller,
@@ -356,8 +356,20 @@ class _UpdateState extends State<Update> {
                                               sex: sexcontroller,
                                               id: 0,
                                               targetWeight: double.parse(
-                                                  _targetWeightController
-                                                      .text)));
+                                                _targetWeightController.text,
+                                              ),
+                                              calo: calculatecalorie(
+                                                  double.parse(
+                                                      _weightController.text),
+                                                  double.parse(
+                                                      _heightController.text),
+                                                  double.parse(
+                                                      _targetWeightController
+                                                          .text),
+                                                  int.parse(
+                                                      _ageController.text),
+                                                  sexcontroller,
+                                                  goalcontroller)));
 
                                       // ignore: use_build_context_synchronously
                                       Navigator.of(context).pop(
@@ -391,5 +403,26 @@ class _UpdateState extends State<Update> {
         ),
       ),
     );
+  }
+
+  double calculatecalorie(double weight, double height, double targetweight,
+      int age, String sex, String goal) {
+    double bmr;
+    if (sex.toLowerCase() == 'Male') {
+      bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    } else {
+      bmr = 444.7 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+    }
+
+    if (goal == 'Lose weight') {
+      bmr -= 500;
+    } else if (goal == 'Gain Weight') {
+      bmr += 500;
+    }
+
+    double caloriebudget = bmr * 1.2;
+    caloriebudget = caloriebudget.roundToDouble();
+
+    return caloriebudget;
   }
 }

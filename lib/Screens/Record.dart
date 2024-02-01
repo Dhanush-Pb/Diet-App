@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:intl/intl.dart';
+import 'package:project/db/db_record.dart';
+import 'package:project/model/data_totalcalories.dart';
+import 'package:project/model/data_water.dart';
 
 class Record extends StatefulWidget {
   const Record({super.key});
@@ -9,6 +14,11 @@ class Record extends StatefulWidget {
 }
 
 class _RecordState extends State<Record> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +39,7 @@ class _RecordState extends State<Record> {
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  Color.fromARGB(255, 197, 242, 250),
+                  Color.fromARGB(255, 203, 249, 255),
                   Color.fromRGBO(255, 255, 255, 1),
                 ],
                 begin: Alignment.topCenter,
@@ -38,47 +48,142 @@ class _RecordState extends State<Record> {
             ),
             child: SafeArea(
                 child: SingleChildScrollView(
-                    child: Column(children: [
-              ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 3,
-                  itemBuilder: (context, index) {
-                    return const Card(
-                      color: Color.fromARGB(255, 217, 249, 255),
-                      elevation: 5,
-                      margin: EdgeInsets.only(top: 20, left: 30, right: 30),
-                      child: ListTile(
-                        subtitle: Column(
-                          children: [
-                            Text('date',
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                )),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            Text(
-                              'calore',
-                              style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w500),
-                            ),
-                            SizedBox(
-                              height: 25,
-                            ),
-                            Text('water',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w500)),
-                            SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        ),
-                        // Customize ListTile as needed
-                      ),
-                    );
-                  })
-            ])))));
+                    child: ValueListenableBuilder(
+                        valueListenable:
+                            Hive.box<TotalCalories>('TotalCaloriesbox')
+                                .listenable(),
+                        // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
+                        builder: (context, totalCaloriesBox, Widget) {
+                          return ValueListenableBuilder(
+                              valueListenable:
+                                  Hive.box<WaterintakeModel>('Waterbox')
+                                      .listenable(),
+                              // ignore: non_constant_identifier_names
+                              builder: (context, WaterintakeBox, Widget) {
+                                return Column(children: [
+                                  ListView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      itemCount: getAllDates().length > 1
+                                          ? getAllDates().length - 2
+                                          : 0,
+                                      itemBuilder: (context, index) {
+                                        String date = getAllDates()[index];
+                                        int totalCalories =
+                                            getotalCaloriesFordate(date);
+                                        int totalwater =
+                                            getTotalwaterintakeforDate(date);
+                                        return Card(
+                                          color:
+                                              Color.fromARGB(255, 92, 92, 194),
+                                          elevation: 5,
+                                          margin: const EdgeInsets.only(
+                                              top: 20, left: 30, right: 30),
+                                          child: ListTile(
+                                            subtitle: Column(
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Text(
+                                                        DateFormat(
+                                                                'dd MMM yyyy')
+                                                            .format(DateTime
+                                                                .parse(date)),
+                                                        style: const TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    255))),
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 25,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    const Text(
+                                                      'Water intake',
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255)),
+                                                    ),
+                                                    Text(
+                                                      '$totalwater glass',
+                                                      style: const TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255)),
+                                                    )
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 25,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    const Text(
+                                                        'Calories intake',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    255,
+                                                                    255,
+                                                                    255))),
+                                                    Text(
+                                                      '$totalCalories kcal',
+                                                      style: const TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              255,
+                                                              255,
+                                                              255)),
+                                                    )
+                                                  ],
+                                                ),
+                                                const SizedBox(
+                                                  height: 30,
+                                                ),
+                                              ],
+                                            ),
+                                            // Customize ListTile as needed
+                                          ),
+                                        );
+                                      })
+                                ]);
+                              });
+                        })))));
   }
 }

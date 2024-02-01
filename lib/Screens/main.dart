@@ -10,6 +10,7 @@ import 'package:project/model/data_model.dart';
 import 'package:project/Screens/splash.dart';
 import 'package:project/model/data_selectedfood.dart';
 import 'package:project/model/data_totalcalories.dart';
+import 'package:project/model/data_water.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,6 +29,8 @@ Future<void> main() async {
   await Hive.openBox<Selectedfooditem>('selectedfoodbox');
   Hive.registerAdapter(TotalCaloriesAdapter());
   await Hive.openBox<TotalCalories>('TotalCaloriesbox');
+  Hive.registerAdapter(WaterintakeModelAdapter());
+  await Hive.openBox<WaterintakeModel>('Waterbox');
   //potrait lock
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

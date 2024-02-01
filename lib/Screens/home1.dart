@@ -7,8 +7,10 @@ import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:project/Foods/Navigationconditions.dart';
 import 'package:project/Foods/Selected_food.dart';
 import 'package:project/db/db-function.dart';
+import 'package:project/db/db_record.dart';
 import 'package:project/model/data_model.dart';
 import 'package:project/model/data_totalcalories.dart';
+import 'package:project/model/data_water.dart';
 
 class Home1 extends StatefulWidget {
   const Home1({Key? key}) : super(key: key);
@@ -21,12 +23,42 @@ class _Home1State extends State<Home1> {
   late Box<TotalCalories> totalCaloriesBox;
 
   int totalCalories = totalcalories12;
+
+  int glassConsumed = 0;
   @override
   void initState() {
     getallUser();
 
     totalCaloriesBox = Hive.box<TotalCalories>('TotalCaloriesbox');
+
+    _loadWaterintake();
+    saveTotalCalories(totalcalories12);
     super.initState();
+  }
+  //waterfunction
+
+  // ignore: unused_element
+  void _loadWaterintake() async {
+    // ignore: non_constant_identifier_names
+    var WaterintakeBox = Hive.box<WaterintakeModel>('Waterbox');
+    var currentdate = DateTime.now().toString().split(' ')[0];
+
+    var waterintake = WaterintakeBox.get(currentdate,
+        defaultValue: WaterintakeModel(0, currentdate));
+
+    if (waterintake?.date != currentdate) {
+      glassConsumed = 0;
+
+      saveWaterIntake();
+    } else {
+      setState(() {
+        glassConsumed = waterintake?.glassconsumed ?? 0;
+      });
+    }
+  }
+
+  void saveTotalCalories(int totalCalories) async {
+    await totalCaloriesBox.put('totalCalories', TotalCalories(totalCalories));
   }
 
   @override
@@ -50,7 +82,6 @@ class _Home1State extends State<Home1> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     // final Screenheight = MediaQuery.of(context).size.height;
-
     return ValueListenableBuilder(
         valueListenable: userlistNotifier,
         builder: (context, List<UserModel> userlis, child) {
@@ -175,7 +206,7 @@ class _Home1State extends State<Home1> {
                                 progressColor:
                                     const Color.fromARGB(255, 132, 0, 255),
                                 backgroundColor:
-                                    Color.fromARGB(209, 233, 245, 255),
+                                    const Color.fromARGB(209, 233, 245, 255),
                                 circularStrokeCap: CircularStrokeCap.round,
                                 center: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -410,7 +441,6 @@ class _Home1State extends State<Home1> {
                                                           Color.fromARGB(255,
                                                               126, 16, 216))))
                                           .then((value) {
-                                        print(value);
                                         setState(() {});
                                       });
                                     },
@@ -491,7 +521,6 @@ class _Home1State extends State<Home1> {
                                                       appbarcolor:
                                                           Color(0xFFF17C0E))))
                                           .then((value) {
-                                        print(value);
                                         setState(() {});
                                       });
                                     },
@@ -573,8 +602,8 @@ class _Home1State extends State<Home1> {
                                     children: [
                                       const Spacer(),
                                       Text(
-                                        '1 glass',
-                                        style: GoogleFonts.actor(
+                                        '$glassConsumed glass',
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 20),
                                       ),
@@ -584,18 +613,37 @@ class _Home1State extends State<Home1> {
                                       const Spacer(),
                                       IconButton(
                                         onPressed: () {},
-                                        icon: Image.asset(
-                                          'lib/asset/sign.png',
-                                          width: 28,
+                                        icon: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              glassConsumed++;
+                                              saveWaterIntake();
+                                            });
+                                          },
+                                          child: Image.asset(
+                                            'lib/asset/sign.png',
+                                            width: 28,
+                                          ),
                                         ),
                                       ),
                                       const Spacer(),
                                       const Spacer(),
                                       IconButton(
                                         onPressed: () {},
-                                        icon: Image.asset(
-                                          'lib/asset/delete.png',
-                                          width: 28.5,
+                                        icon: GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              glassConsumed =
+                                                  (glassConsumed - 1)
+                                                      .clamp(0, double.infinity)
+                                                      .toInt();
+                                              saveWaterIntake();
+                                            });
+                                          },
+                                          child: Image.asset(
+                                            'lib/asset/delete.png',
+                                            width: 28.5,
+                                          ),
                                         ),
                                       ),
                                       const Spacer(),
@@ -618,5 +666,16 @@ class _Home1State extends State<Home1> {
             ),
           );
         });
+  }
+
+  void saveWaterIntake() async {
+    var waterIntakeBox = Hive.box<WaterintakeModel>('Waterbox');
+    var currentDate = DateTime.now().toString().split(' ')[0];
+
+    var waterIntake = waterIntakeBox.get(currentDate,
+        defaultValue: WaterintakeModel(0, currentDate));
+
+    waterIntake?.glassconsumed = glassConsumed; // corrected typo here
+    await waterIntakeBox.put(currentDate, waterIntake!);
   }
 }
