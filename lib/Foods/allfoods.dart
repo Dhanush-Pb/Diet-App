@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:project/Foods.dart/addfood.dart';
-import 'package:project/Foods.dart/searchwidget.dart';
+import 'package:project/Foods/addfood.dart';
+import 'package:project/Foods/searchwidget.dart';
 import 'package:project/model/data_food.dart';
 
 final searchController = TextEditingController();
@@ -250,10 +250,19 @@ class _BreakfastfoodsListState extends State<BreakfastfoodsList> {
 
                       // ignore: avoid_unnecessary_containers
                       Container(
-                        child: ListView.builder(
+                        child: ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: filterdfooditems.length,
+                          separatorBuilder: (BuildContext context, int index) {
+                            return const Padding(
+                              padding: EdgeInsets.only(
+                                  left: 9, right: 9, top: 5, bottom: 5),
+                              child: Divider(
+                                thickness: 0.6,
+                              ),
+                            );
+                          },
                           itemBuilder: (context, index) {
                             // ignore: non_constant_identifier_names
                             final FoodiTem = filterdfooditems[index];

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/Screens/Record.dart';
 import 'package:project/Screens/account.dart';
 import 'package:project/Screens/home1.dart';
 import 'package:project/resipes/resipes.dart';
@@ -12,14 +13,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Home1(),
-    Text(
-      'page2',
-      style: optionStyle,
-    ),
+    Record(),
     Resipes(),
     Account(),
   ];

@@ -2,7 +2,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'data_totalcalories.g.dart';
 
 @HiveType(typeId: 7)
-class TotalCalories {
+class TotalCalories extends HiveObject {
   @HiveField(0)
   final int total;
   @HiveField(1)

@@ -1,6 +1,7 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/Foods.dart/Selected_food.dart';
+import 'package:project/Foods/Selected_food.dart';
 
 class Navcondition extends StatefulWidget {
   final String appbartitle;

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Foods.dart/allfoods.dart';
-import 'package:project/Screens/calorie.dart';
 import 'package:project/model/data_food.dart';
 
 class Addyfood extends StatefulWidget {
@@ -170,7 +168,6 @@ class _AddyfoodState extends State<Addyfood> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               _onadd(context);
-                              _showsnackbar(context, 'Added Sucecsses Fully');
                             }
                           },
                           style: TextButton.styleFrom(
@@ -201,11 +198,14 @@ class _AddyfoodState extends State<Addyfood> {
     );
   }
 
-  void _showsnackbar(BuildContext context, String mesg) {
+  void _showsnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: const Color.fromARGB(255, 40, 83, 226),
-        content: Text(mesg),
+        backgroundColor: const Color.fromARGB(255, 12, 51, 177),
+        content: Text(
+          message,
+          style: const TextStyle(fontSize: 19),
+        ),
         duration: const Duration(seconds: 2),
         behavior: SnackBarBehavior.floating,
       ),
@@ -225,6 +225,7 @@ class _AddyfoodState extends State<Addyfood> {
       foodBox.add(newFoodItem);
 
       // Close the current screen and return the new food item
+      _showsnackbar(context, '$name added successfully.');
       Navigator.pop(context, newFoodItem);
     }
   }

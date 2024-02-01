@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 70, 128, 255)),
         useMaterial3: true,
       ),
+
       debugShowCheckedModeBanner: false,
       // ignore: prefer_const_constructors
       home: spalsh(),
