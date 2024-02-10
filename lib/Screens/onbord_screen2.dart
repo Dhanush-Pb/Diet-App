@@ -1,21 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Screens/onbord4.dart';
+import 'package:project/Screens/onbord_screen1.dart';
+import 'package:project/Screens/onbord_screen3.dart';
+import 'package:project/Screens/profile_screen.dart';
 
-class InBorder2 extends StatefulWidget {
-  const InBorder2({Key? key}) : super(key: key);
+class InBorder22 extends StatefulWidget {
+  const InBorder22({Key? key}) : super(key: key);
 
   @override
-  State<InBorder2> createState() => _InBorder1State();
+  State<InBorder22> createState() => _InBorder1State();
 }
 
-class _InBorder1State extends State<InBorder2> {
+class _InBorder1State extends State<InBorder22> {
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
     final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => const InBorder1()));
+          },
+        ),
+        backgroundColor: const Color.fromARGB(255, 122, 208, 219),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const Profile()));
+              },
+              child: const Text(
+                'skip >',
+                style: TextStyle(fontWeight: FontWeight.w400),
+              ))
+        ],
+      ),
       body: Container(
         width: screenwidth,
         height: Screenheight,
@@ -33,38 +55,38 @@ class _InBorder1State extends State<InBorder2> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 150,
-            ),
             Center(
-              child: Lottie.asset('lib/asset/Animation - 1705068973145.json'),
-            ),
-            const SizedBox(
-              height: 25,
+              child: Lottie.asset('lib/asset/Animation - 1705072154088.json'),
             ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  'Create custom recipes and Save',
-                  style: TextStyle(fontSize: 21, fontWeight: FontWeight.w500),
+                  'Your perfect diet is now available in',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                 ),
               ],
             ),
+            const Column(
+              children: [
+                Text(
+                  'Just one tap',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                )
+              ],
+            ),
             const SizedBox(
-              height: 180,
+              height: 100,
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const InBorder4()),
+                  MaterialPageRoute(builder: (context) => const InBorder2()),
                 );
               },
               style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  // side: const BorderSide(
-                  //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
                   backgroundColor: Color.fromARGB(255, 255, 255, 255),
                   minimumSize: const Size(100, 40) // Set the text color here
                   ),

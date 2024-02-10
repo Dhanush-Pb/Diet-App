@@ -3,8 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 
-import 'package:project/Foods/addfood.dart';
-import 'package:project/Foods/searchwidget.dart';
+import 'package:project/Foods/add_food.dart';
+import 'package:project/Foods/search_widget.dart';
 import 'package:project/model/data_food.dart';
 
 final searchController = TextEditingController();

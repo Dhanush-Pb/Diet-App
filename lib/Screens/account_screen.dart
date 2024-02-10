@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Screens/Update.dart';
+import 'package:project/Screens/Update_screen.dart';
 import 'package:project/db/db-function.dart';
 import 'package:project/model/data_model.dart';
 

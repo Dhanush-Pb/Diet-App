@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project/Screens/account.dart';
-import 'package:project/Screens/home.dart';
+import 'package:project/Screens/account_screen.dart';
+import 'package:project/Screens/home_screen.dart';
 
 import 'package:project/db/db-function.dart';
 

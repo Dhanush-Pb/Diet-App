@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:project/Screens/home.dart';
-import 'package:project/Screens/onbord1.dart';
+import 'package:project/Screens/home_screen.dart';
+import 'package:project/Screens/onbord_screen1.dart';
 
 import 'package:project/db/db-function.dart';
 

@@ -11,6 +11,7 @@ Widget coustm({
     builder: (context, visible, child) {
       return Visibility(
         visible: searchNotifier.value,
+        // ignore: avoid_unnecessary_containers
         child: Container(
           child: Padding(
             padding: const EdgeInsets.only(top: 17, left: 20, right: 20),

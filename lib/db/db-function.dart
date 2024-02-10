@@ -6,8 +6,9 @@ ValueNotifier<List<UserModel>> userlistNotifier = ValueNotifier([]);
 
 void adduser(UserModel value) async {
   final userDB = await Hive.openBox<UserModel>('user_db');
+  // ignore: no_leading_underscores_for_local_identifiers
   final _id = await userDB.add(value);
-  print(userDB.values.first);
+
   value.id = _id;
   userlistNotifier.value.add(value);
   // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member

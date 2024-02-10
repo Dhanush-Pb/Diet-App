@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Screens/calorie.dart';
+import 'package:project/Screens/calorie_screen.dart';
 
 import 'package:project/db/db-function.dart';
 

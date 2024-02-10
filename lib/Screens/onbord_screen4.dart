@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Screens/profile.dart';
+import 'package:project/Screens/profile_screen.dart';
 
 class InBorder4 extends StatefulWidget {
   const InBorder4({Key? key}) : super(key: key);
@@ -13,8 +13,13 @@ class InBorder4 extends StatefulWidget {
 class _InBorder1State extends State<InBorder4> {
   @override
   Widget build(BuildContext context) {
+    final screenwidth = MediaQuery.of(context).size.width;
+    // ignore: non_constant_identifier_names
+    final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: Container(
+        height: Screenheight,
+        width: screenwidth,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [
@@ -55,7 +60,7 @@ class _InBorder1State extends State<InBorder4> {
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
-                  height: 150,
+                  height: 100,
                 ),
                 ElevatedButton(
                   onPressed: () {

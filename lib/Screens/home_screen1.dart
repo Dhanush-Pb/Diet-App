@@ -1,13 +1,20 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:project/Foods/Navigationconditions.dart';
+import 'package:project/Foods/bmipage_widget.dart';
+import 'package:project/Foods/foods.dart';
 import 'package:project/Foods/Selected_food.dart';
+import 'package:project/Foods/style.dart';
+import 'package:project/Screen2/about.dart';
+import 'package:project/Screens/local_notification.dart';
+import 'package:project/Screen2/privacypolicy.dart';
+import 'package:project/Screen2/readme.dart';
 import 'package:project/db/db-function.dart';
-import 'package:project/db/db_record.dart';
 import 'package:project/model/data_model.dart';
 import 'package:project/model/data_totalcalories.dart';
 import 'package:project/model/data_water.dart';
@@ -23,6 +30,7 @@ class _Home1State extends State<Home1> {
   late Box<TotalCalories> totalCaloriesBox;
 
   int totalCalories = totalcalories12;
+  late Timer _timer;
 
   int glassConsumed = 0;
   @override
@@ -33,6 +41,7 @@ class _Home1State extends State<Home1> {
 
     _loadWaterintake();
     saveTotalCalories(totalcalories12);
+    _starttimer();
     super.initState();
   }
   //waterfunction
@@ -63,8 +72,30 @@ class _Home1State extends State<Home1> {
 
   @override
   void dispose() {
+    _timer.cancel();
     totalCaloriesBox.listenable().removeListener(_onTotalCalories);
     super.dispose();
+  }
+
+  ///timer for notification automaticly
+  void _starttimer() {
+    _timer = Timer.periodic(const Duration(hours: 1), (timer) {
+      if (glassConsumed <= 8) {
+        checkwaterintake();
+      }
+    });
+  }
+
+  ///notification of water
+  void checkwaterintake() {
+    if (glassConsumed <= 8) {
+      // If water intake is zero, show a notification
+      LocalNotification.showaimblenotification(
+        title: "Hey ${userlistNotifier.value[0].name}",
+        body: "Don't forget to drink water and stay hydrated!",
+        payload: "water_intake_reminder",
+      );
+    }
   }
 
   void _onTotalCalories() {
@@ -95,15 +126,23 @@ class _Home1State extends State<Home1> {
                     icon: const Icon(Icons.more_vert),
                     itemBuilder: (BuildContext context) {
                       return [
-                        const PopupMenuItem(
+                        PopupMenuItem(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AboutScreen()));
+                          },
                           // ignore: sort_child_properties_last
-                          child: Text('About'),
+                          child: const Text('About'),
                           value: 'About',
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           // ignore: sort_child_properties_last
-                          child: Text('Privacy policy'),
+                          child: const Text('Privacy policy'),
                           value: 'privacy policy',
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => const PrivacyPolicy()));
+                          },
                         ),
                       ];
                     },
@@ -147,7 +186,7 @@ class _Home1State extends State<Home1> {
                     //GRAPH Show
                     Container(
                       height: 300,
-                      width: 350,
+                      width: 330,
                       decoration: BoxDecoration(
                           boxShadow: const [
                             BoxShadow(
@@ -224,13 +263,9 @@ class _Home1State extends State<Home1> {
                                             Color.fromARGB(255, 255, 255, 255),
                                       ),
                                     ),
-                                    const Text(
-                                      'Cal remaining',
-                                      style: TextStyle(
-                                        color:
-                                            Color.fromARGB(255, 255, 255, 255),
-                                      ),
-                                    ),
+                                    styledText('Cal remaining',
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400)
                                   ],
                                 ),
                               ),
@@ -238,24 +273,16 @@ class _Home1State extends State<Home1> {
                             const SizedBox(
                               height: 15,
                             ),
-                            const Row(
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
-                                Text(
-                                  'Consumed',
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(255, 255, 255, 255)),
-                                ),
-                                SizedBox(
+                                styledText('Consumed',
+                                    fontSize: 15, fontWeight: FontWeight.w400),
+                                const SizedBox(
                                   width: 30,
                                 ),
-                                Text(
-                                  'Total',
-                                  style: TextStyle(
-                                      color:
-                                          Color.fromARGB(255, 255, 255, 255)),
-                                ),
+                                styledText('Total',
+                                    fontSize: 15, fontWeight: FontWeight.w400)
                               ],
                             ),
                             const SizedBox(
@@ -279,9 +306,9 @@ class _Home1State extends State<Home1> {
                                       color: Color.fromARGB(255, 255, 255, 255),
                                       fontWeight: FontWeight.w500),
                                 ),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
+                                const Spacer(
+                                  flex: 3,
+                                ),
                                 Image.asset(
                                   'lib/asset/fire.png',
                                   width: 22,
@@ -304,13 +331,16 @@ class _Home1State extends State<Home1> {
                         ),
                       ),
                     ),
-
                     const SizedBox(
                       height: 50,
                     ),
                     //BREAKFAST
                     Column(
                       children: [
+                        const Readme(),
+                        const SizedBox(
+                          height: 25,
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(left: 22, right: 22),
                           child: Container(
@@ -408,18 +438,18 @@ class _Home1State extends State<Home1> {
                                     radius: 37,
                                   ),
                                 ),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
+                                const Spacer(
+                                  flex: 3,
+                                ),
                                 const Text(
                                   'Lunch',
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
+                                const Spacer(
+                                  flex: 3,
+                                ),
                                 IconButton(
                                   onPressed: () {
                                     Navigator.of(context)
@@ -485,19 +515,18 @@ class _Home1State extends State<Home1> {
                                       AssetImage('lib/asset/dinner.png'),
                                   radius: 28,
                                 ),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
+                                const Spacer(
+                                  flex: 4,
+                                ),
                                 const Text(
                                   'Dinner ',
                                   style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.w500),
                                 ),
-                                const Spacer(),
-                                const Spacer(),
-                                const Spacer(),
+                                const Spacer(
+                                  flex: 2,
+                                ),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.of(context)
@@ -629,7 +658,9 @@ class _Home1State extends State<Home1> {
                                       const Spacer(),
                                       const Spacer(),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          _starttimer();
+                                        },
                                         icon: GestureDetector(
                                           onTap: () {
                                             setState(() {
@@ -638,6 +669,8 @@ class _Home1State extends State<Home1> {
                                                       .clamp(0, double.infinity)
                                                       .toInt();
                                               saveWaterIntake();
+                                              // checkwaterintake();
+                                              _starttimer();
                                             });
                                           },
                                           child: Image.asset(
@@ -646,20 +679,21 @@ class _Home1State extends State<Home1> {
                                           ),
                                         ),
                                       ),
-                                      const Spacer(),
-                                      const Spacer(),
-                                      const Spacer(),
+                                      const Spacer(
+                                        flex: 3,
+                                      ),
                                     ],
-                                  )
+                                  ),
                                 ],
-                              )
+                              ),
                             ],
                           ),
                         ),
 
                         const SizedBox(
-                          height: 25,
-                        )
+                          height: 35,
+                        ),
+                        const BmiPageWidget()
                       ],
                     ),
                   ])))),

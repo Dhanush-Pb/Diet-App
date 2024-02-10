@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:project/db/db-function.dart';
-import 'package:project/Screens/home.dart';
+import 'package:project/Screens/home_screen.dart';
 import 'package:project/model/data_model.dart';
 
 class Calories extends StatefulWidget {
@@ -82,7 +82,7 @@ class _CaloriesState extends State<Calories> {
                       width: 1,
                     ),
                     backgroundColor: const Color.fromARGB(255, 42, 170, 255),
-                    minimumSize: Size(140, 40),
+                    minimumSize: const Size(140, 40),
                   ),
                   child: const Text('Continue'),
                 ),

@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
-import 'package:project/Foods/allfoods.dart';
+import 'package:project/Foods/all_foods.dart';
 import 'package:project/db/db-function.dart';
 
 import 'package:project/model/data_food.dart';
@@ -201,38 +201,6 @@ class _BrakfastFoodState extends State<BrakfastFood> {
                                                           showDialogForExceededCalories(
                                                               context);
                                                         }
-                                                        // if (totalcalories12 >
-                                                        //     userlis[0].calo) {
-                                                        //   ScaffoldMessenger.of(
-                                                        //           context)
-                                                        //       .showSnackBar(
-                                                        //     const SnackBar(
-                                                        //       content: Text(
-                                                        //         'You have consumed more calories than your requirement!',
-                                                        //         style: TextStyle(
-                                                        //             fontWeight:
-                                                        //                 FontWeight
-                                                        //                     .w600,
-                                                        //             fontSize:
-                                                        //                 18),
-                                                        //       ),
-                                                        //       behavior:
-                                                        //           SnackBarBehavior
-                                                        //               .floating,
-                                                        //       backgroundColor:
-                                                        //           Color
-                                                        //               .fromARGB(
-                                                        //                   255,
-                                                        //                   255,
-                                                        //                   0,
-                                                        //                   0),
-                                                        //       duration:
-                                                        //           Duration(
-                                                        //               seconds:
-                                                        //                   2),
-                                                        //     ),
-                                                        //   );
-                                                        //}
                                                         setState(() {
                                                           selectedItems[index]
                                                               .quantity++;
@@ -470,7 +438,7 @@ class _BrakfastFoodState extends State<BrakfastFood> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               const Text(

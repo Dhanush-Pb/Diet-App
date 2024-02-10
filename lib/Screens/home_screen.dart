@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project/Screens/Record.dart';
-import 'package:project/Screens/account.dart';
-import 'package:project/Screens/home1.dart';
+import 'package:project/Screens/Record_screen.dart';
+import 'package:project/Screens/account_screen.dart';
+import 'package:project/Screens/home_screen1.dart';
 import 'package:project/resipes/resipes.dart';
 
 class Home extends StatefulWidget {

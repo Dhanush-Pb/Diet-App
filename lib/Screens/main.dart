@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:project/Screens/local_notification.dart';
 import 'package:project/model/data_breakfast.dart';
 import 'package:project/model/data_dinner.dart';
 import 'package:project/model/data_food.dart';
 import 'package:project/model/data_lunch.dart';
 import 'package:project/model/data_model.dart';
-
-import 'package:project/Screens/splash.dart';
+import 'package:project/Screens/splash_screen.dart';
 import 'package:project/model/data_selectedfood.dart';
 import 'package:project/model/data_totalcalories.dart';
 import 'package:project/model/data_water.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize local notifications
+  await LocalNotification.init();
+
   await Hive.initFlutter();
   Hive.registerAdapter(UserModelAdapter());
   await Hive.openBox<UserModel>('user_db');
@@ -31,7 +35,8 @@ Future<void> main() async {
   await Hive.openBox<TotalCalories>('TotalCaloriesbox');
   Hive.registerAdapter(WaterintakeModelAdapter());
   await Hive.openBox<WaterintakeModel>('Waterbox');
-  //potrait lock
+
+  //portrait lock
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -41,9 +46,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -53,9 +57,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 70, 128, 255)),
         useMaterial3: true,
       ),
-
       debugShowCheckedModeBanner: false,
-      // ignore: prefer_const_constructors
       home: spalsh(),
     );
   }
