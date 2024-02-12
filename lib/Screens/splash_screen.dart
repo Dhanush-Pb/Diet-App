@@ -1,11 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:project/Screens/home_screen.dart';
 import 'package:project/Screens/onbord_screen1.dart';
 
 import 'package:project/db/db-function.dart';
 
+// ignore: camel_case_types
 class spalsh extends StatefulWidget {
   const spalsh({super.key});
 
@@ -13,10 +15,11 @@ class spalsh extends StatefulWidget {
   State<spalsh> createState() => _spalshState();
 }
 
+// ignore: camel_case_types
 class _spalshState extends State<spalsh> {
   @override
   void initState() {
-    // TODO: implement initState
+    permission();
     Gonext();
     getallUser();
 
@@ -76,5 +79,14 @@ class _spalshState extends State<spalsh> {
         // ignore: use_build_context_synchronously
         : Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const InBorder1()));
+  }
+
+  Future<void> permission() async {
+    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+        FlutterLocalNotificationsPlugin();
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
+        ?.requestNotificationsPermission();
   }
 }

@@ -171,32 +171,6 @@ class _ProfileState extends State<Profile> {
               const SizedBox(
                 height: 15,
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 25, right: 25, top: 10),
-              //   child: TextFormField(
-              //     controller: _dobcontroller,
-              //     key: const Key('DOB'),
-              //     keyboardType: TextInputType.datetime,
-              //     autovalidateMode: AutovalidateMode.onUserInteraction,
-              //     decoration: InputDecoration(
-              //       fillColor: const Color.fromARGB(255, 235, 246, 247),
-              //       filled: true,
-              //       border: OutlineInputBorder(
-              //         borderRadius: BorderRadius.circular(10),
-              //       ),
-              //       labelText: 'DOB:     DD/MM/YYYY',
-              //       contentPadding:
-              //           const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Date of birth is required!';
-              //       } else {
-              //         return null;
-              //       }
-              //     },
-              //   ),
-              // ),
               const SizedBox(
                 height: 15,
               ),

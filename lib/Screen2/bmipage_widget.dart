@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/Foods/bmi_.dart';
+import 'package:project/Screen2/bmi_.dart';
 import 'package:project/Foods/style.dart';
 
 class BmiPageWidget extends StatelessWidget {
@@ -51,7 +51,7 @@ class BmiPageWidget extends StatelessWidget {
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-              const Color.fromARGB(255, 138, 36, 255),
+              Color.fromARGB(255, 88, 4, 184),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
@@ -59,7 +59,7 @@ class BmiPageWidget extends StatelessWidget {
               ),
             ),
           ),
-          child: styledText('Check Now', fontSize: 15),
+          child: Ink(child: styledText('Check Now', fontSize: 15)),
         ),
         const SizedBox(height: 30),
       ],

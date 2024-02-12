@@ -80,7 +80,7 @@ class AboutScreen extends StatelessWidget {
                 // Add your contact action here
               },
               child: styledText(
-                'info@NutrieFuel.com',
+                'info@NutriFuel.com',
                 fontSize: 16,
                 color: Colors.blue, // Make it look like a link
                 fontWeight: FontWeight.bold,

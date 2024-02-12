@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:project/Foods/bmipage_widget.dart';
+import 'package:project/Screen2/bmipage_widget.dart';
 import 'package:project/Foods/foods.dart';
 import 'package:project/Foods/Selected_food.dart';
 import 'package:project/Foods/style.dart';
@@ -79,7 +79,7 @@ class _Home1State extends State<Home1> {
 
   ///timer for notification automaticly
   void _starttimer() {
-    _timer = Timer.periodic(const Duration(hours: 1), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (glassConsumed <= 8) {
         checkwaterintake();
       }
@@ -129,7 +129,7 @@ class _Home1State extends State<Home1> {
                         PopupMenuItem(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => AboutScreen()));
+                                builder: (context) => const AboutScreen()));
                           },
                           // ignore: sort_child_properties_last
                           child: const Text('About'),
