@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project/Screens/Update_screen.dart';
-import 'package:project/db/db-function.dart';
+import 'package:project/db/db_function.dart';
+
 import 'package:project/model/data_model.dart';
 
 class Account extends StatefulWidget {
@@ -13,7 +14,7 @@ class Account extends StatefulWidget {
   State<Account> createState() => _AccountState();
 }
 
-int _selectedIndex = 3;
+//int _selectedIndex = 3;
 
 class _AccountState extends State<Account> {
   UserModel? user;
@@ -106,10 +107,9 @@ class _AccountState extends State<Account> {
                                 // ignore: prefer_const_constructors
                                 foregroundColor: Color.fromARGB(255, 0, 0, 0),
                               ),
-                              child: Text(
+                              child: const Text(
                                 'Edit Details',
-                                style: GoogleFonts.actor(
-                                    fontWeight: FontWeight.w600),
+                                style: TextStyle(fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),

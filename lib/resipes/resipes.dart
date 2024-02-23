@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:project/resipes/breakfast.dart';
 import 'package:project/resipes/dinner.dart';
 import 'package:project/resipes/lunch.dart';
@@ -17,12 +16,12 @@ class _ResipesState extends State<Resipes> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Recipes',
-          style: GoogleFonts.actor(
+          style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 25,
-              color: const Color.fromARGB(255, 255, 255, 255)),
+              color: Color.fromARGB(255, 255, 255, 255)),
         ),
         backgroundColor: const Color.fromARGB(255, 120, 184, 196),
       ),
@@ -125,10 +124,10 @@ class _ResipesState extends State<Resipes> {
                 onPressed: navigateTo,
                 child: Text(
                   buttonText,
-                  style: GoogleFonts.actor(
+                  style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 17,
-                    color: const Color.fromARGB(255, 255, 255, 255),
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                 ),
               ),

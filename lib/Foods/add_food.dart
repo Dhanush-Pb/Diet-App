@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project/model/data_food.dart';
@@ -26,12 +26,12 @@ class _AddyfoodState extends State<Addyfood> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           ' Add your food',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),

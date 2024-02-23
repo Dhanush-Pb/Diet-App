@@ -19,74 +19,87 @@ class AboutScreen extends StatelessWidget {
       ),
       // ignore: prefer_const_constructors
       backgroundColor: Color.fromARGB(255, 0, 0, 0),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            styledText(
-              'About Our Diet App',
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 20),
-            styledText(
-              'Welcome to Nutri Fuel - your personalized diet companion!',
-              fontSize: 18,
-            ),
-            const SizedBox(height: 10),
-            styledText(
-              'Nutrie Fuel is designed to help you achieve your health and fitness goals by providing personalized diet plans, nutritional information, and tracking tools.',
-              fontSize: 16,
-            ),
-            const SizedBox(height: 10),
-            styledText(
-              'Our Features Include:',
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-            const SizedBox(height: 10),
-            styledText(
-              '- Personalized Diet Plans: Tailored to your specific needs and goals.',
-              fontSize: 16,
-            ),
-            styledText(
-              '- Food Tracking: Easily log your meals and track your daily intake.',
-              fontSize: 16,
-            ),
-            styledText(
-              '- Nutritional Information: Access detailed nutritional data for thousands of foods.',
-              fontSize: 16,
-            ),
-            styledText(
-              '- Recipe Suggestions: Discover delicious and healthy recipes to try.',
-              fontSize: 16,
-            ),
-            const SizedBox(height: 20),
-            styledText(
-              'We are committed to helping you live a healthier lifestyle!',
-              fontSize: 18,
-            ),
-            const SizedBox(height: 10),
-            styledText(
-              'For any questions or feedback, please contact us at:',
-              fontSize: 16,
-            ),
-            const SizedBox(
-              height: 15,
-            ),
-            GestureDetector(
-              onTap: () {
-                // Add your contact action here
-              },
-              child: styledText(
-                'info@NutriFuel.com',
-                fontSize: 16,
-                color: Colors.blue, // Make it look like a link
-                fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  styledText(
+                    'About Our Diet App',
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 20),
+                  styledText(
+                    'Welcome to Nutri Fuel - your personalized diet companion!',
+                    fontSize: 18,
+                  ),
+                  const SizedBox(height: 10),
+                  styledText(
+                    'Nutrie Fuel is designed to help you achieve your health and fitness goals by providing personalized diet plans, nutritional information, and tracking tools.',
+                    fontSize: 16,
+                  ),
+                  const SizedBox(height: 10),
+                  styledText(
+                    'Our Features Include:',
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(height: 10),
+                  styledText(
+                    '- Personalized Diet Plans: Tailored to your specific needs and goals.',
+                    fontSize: 16,
+                  ),
+                  styledText(
+                    '- Food Tracking: Easily log your meals and track your daily intake.',
+                    fontSize: 16,
+                  ),
+                  styledText(
+                    '- Nutritional Information: Access detailed nutritional data for thousands of foods.',
+                    fontSize: 16,
+                  ),
+                  styledText(
+                    '- Recipe Suggestions: Discover delicious and healthy recipes to try.',
+                    fontSize: 16,
+                  ),
+                  const SizedBox(height: 20),
+                  styledText(
+                    'We are committed to helping you live a healthier lifestyle!',
+                    fontSize: 18,
+                  ),
+                  const SizedBox(height: 10),
+                  styledText(
+                    'For any questions or feedback, please contact us at:',
+                    fontSize: 16,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      // Add your contact action here
+                    },
+                    child: styledText(
+                      'info@NutriFuel.com',
+                      fontSize: 16,
+                      color: Colors.blue, // Make it look like a link
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              const SizedBox(
+                height: 80,
+              ),
+              styledText('Virsion 1.0.0',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w200,
+                  textAlign: TextAlign.center),
+            ],
+          ),
         ),
       ),
     );

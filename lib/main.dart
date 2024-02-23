@@ -1,13 +1,15 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project/Screens/local_notification.dart';
+import 'package:project/Screens/splash_screen.dart';
 import 'package:project/model/data_breakfast.dart';
 import 'package:project/model/data_dinner.dart';
 import 'package:project/model/data_food.dart';
 import 'package:project/model/data_lunch.dart';
 import 'package:project/model/data_model.dart';
-import 'package:project/Screens/splash_screen.dart';
 import 'package:project/model/data_selectedfood.dart';
 import 'package:project/model/data_totalcalories.dart';
 import 'package:project/model/data_water.dart';
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: spalsh(),
+      home: const spalsh(),
     );
   }
 }

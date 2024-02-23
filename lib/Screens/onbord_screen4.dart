@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:project/Screens/profile_screen.dart';
 
@@ -59,28 +59,30 @@ class _InBorder1State extends State<InBorder4> {
                   'Lets Start the journy',
                   style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 100,
                 ),
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Profile()),
-                    );
-                  },
-                  style: TextButton.styleFrom(
-                      foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                      // side: const BorderSide(
-                      //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
-                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                      minimumSize: Size(120, 40) // Set the text color here
-                      ),
-                  child: Text('Continue',
-                      style: GoogleFonts.actor(
-                          fontWeight: FontWeight.w600,
-                          color: const Color.fromARGB(255, 0, 0, 0))),
-                ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Profile()),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                        foregroundColor: const Color.fromARGB(255, 0, 0, 0),
+                        // side: const BorderSide(
+                        //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        minimumSize:
+                            const Size(120, 40) // Set the text color here
+                        ),
+                    child: const Text(
+                      'Continue',
+                      style: TextStyle(color: Colors.black),
+                    )),
               ],
             )
           ],

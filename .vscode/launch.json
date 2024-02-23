@@ -8,7 +8,7 @@
             "name": "project",
             "request": "launch",
             "type": "dart",
-            "program": "lib/Screens/main.dart"
+            "program": "lib/main.dart",
         },
         {
             "name": "project (profile mode)",

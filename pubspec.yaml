@@ -40,7 +40,7 @@ dependencies:
   build_runner: ^2.4.8
   video_player: ^2.8.2
   lottie: ^3.0.0
-  google_fonts: ^6.1.0
+  
   image_picker: ^1.0.7
   intl: ^0.19.0
   percent_indicator: ^4.2.3

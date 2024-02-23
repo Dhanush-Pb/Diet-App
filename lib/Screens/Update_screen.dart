@@ -1,9 +1,10 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:project/Screens/account_screen.dart';
 import 'package:project/Screens/home_screen.dart';
-
-import 'package:project/db/db-function.dart';
+import 'package:project/db/db_function.dart';
 
 import 'package:project/model/data_model.dart';
 
@@ -382,9 +383,9 @@ class _UpdateState extends State<Update> {
                                     foregroundColor: const Color.fromARGB(
                                         255, 255, 255, 255),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     'Save',
-                                    style: GoogleFonts.actor(
+                                    style: TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w600),
                                   ),

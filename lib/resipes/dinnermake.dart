@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/model/data_dinner.dart';
@@ -29,7 +29,7 @@ class _DinnerMakeState extends State<DinnerMake> {
         centerTitle: true,
         title: Text(
           'Create Dinner Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: screenWidth * 0.06,
             color: const Color.fromARGB(255, 255, 255, 255),
@@ -216,9 +216,9 @@ class _DinnerMakeState extends State<DinnerMake> {
   void _showSnackbar(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Color.fromARGB(255, 37, 119, 185),
+        backgroundColor: const Color.fromARGB(255, 37, 119, 185),
         content: Text(message),
-        duration: Duration(seconds: 1),
+        duration: const Duration(seconds: 1),
         behavior: SnackBarBehavior.floating,
       ),
     );

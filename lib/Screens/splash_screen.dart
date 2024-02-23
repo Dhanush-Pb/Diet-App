@@ -5,7 +5,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:project/Screens/home_screen.dart';
 import 'package:project/Screens/onbord_screen1.dart';
 
-import 'package:project/db/db-function.dart';
+import 'package:project/db/db_function.dart';
 
 // ignore: camel_case_types
 class spalsh extends StatefulWidget {

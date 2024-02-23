@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:project/Screens/onbord_screen2.dart';
 
@@ -14,6 +14,7 @@ class _InBorder1State extends State<InBorder1> {
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
+    // ignore: non_constant_identifier_names
     final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 122, 208, 219),
@@ -60,28 +61,29 @@ class _InBorder1State extends State<InBorder1> {
             Column(
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const InBorder22()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      // side: const BorderSide(
-                      //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
-                      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-                      minimumSize:
-                          const Size(130, 40) // Set the text color here
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const InBorder22()),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        // side: const BorderSide(
+                        //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
+                        backgroundColor:
+                            const Color.fromARGB(255, 255, 255, 255),
+                        minimumSize:
+                            const Size(130, 40) // Set the text color here
+                        ),
+                    child: const Text(
+                      'Lets go',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'FallbackFont',
                       ),
-                  child: Text(
-                    'Lets go',
-                    style: GoogleFonts.actor(
-                        fontWeight: FontWeight.w600,
-                        color: const Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                ),
+                    )),
               ],
             ),
           ],

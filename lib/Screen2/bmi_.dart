@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -26,7 +28,7 @@ class _BmipageState extends State<Bmipage> {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back),
+            icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -194,8 +196,15 @@ class _BmipageState extends State<Bmipage> {
   }
 
   void calculatebmi() {
-    double weight = double.parse(weightController.text) ?? 0.0;
-    double height = double.parse(heightController.text) ?? 0.0;
+    if (weightController.text.isEmpty || heightController.text.isEmpty) {
+      setState(() {
+        bmiResult = 0.0;
+        resultStatus = 'Enter valid weight and height           ';
+      });
+      return;
+    }
+    double weight = double.parse(weightController.text);
+    double height = double.parse(heightController.text);
 
     if (weight > 0 && height > 0) {
       double heightmeter = height / 100;

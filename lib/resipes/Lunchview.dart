@@ -1,8 +1,8 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:project/model/data_lunch.dart';
 import 'package:project/resipes/lunchedit.dart';
 
@@ -29,12 +29,12 @@ class Lunchview extends StatelessWidget {
               ))
         ],
         centerTitle: true,
-        title: Text(
+        title: const Text(
           ' Lunch Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),

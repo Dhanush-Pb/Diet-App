@@ -1,9 +1,10 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:lottie/lottie.dart';
 import 'package:project/Foods/all_foods.dart';
-import 'package:project/db/db-function.dart';
+import 'package:project/db/db_function.dart';
 
 import 'package:project/model/data_food.dart';
 import 'package:project/model/data_model.dart';
@@ -391,15 +392,18 @@ class _BrakfastFoodState extends State<BrakfastFood> {
                               SizedBox(
                                 height: screenHeight * 0.01,
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Today's Total calories :${calculatecalories()} Kcl",
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w800,
-                                        color: Color.fromARGB(255, 255, 0, 0)),
-                                  )
-                                ],
+                              SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      "Today's Total calories :${calculatecalories()} Kcl",
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w800,
+                                          color:
+                                              Color.fromARGB(255, 255, 0, 0)),
+                                    )
+                                  ],
+                                ),
                               )
                             ],
                           ),

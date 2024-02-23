@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/model/data_breakfast.dart';
@@ -30,7 +30,7 @@ class _BreakfastMakeState extends State<BreakfastMake> {
         centerTitle: true,
         title: Text(
           'Create Breakfast Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize:
                 screenWidth * 0.06, // Adjust font size based on screen width

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:project/Screens/onbord_screen4.dart';
 
@@ -66,16 +66,14 @@ class _InBorder1State extends State<InBorder2> {
                   foregroundColor: Colors.white,
                   // side: const BorderSide(
                   //     color: Color.fromARGB(255, 255, 255, 255), width: 2),
-                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                  backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                   minimumSize: const Size(100, 40) // Set the text color here
                   ),
-              child: Text(
+              child: const Text(
                 'Next',
-                style: GoogleFonts.actor(
-                    fontWeight: FontWeight.w600,
-                    color: const Color.fromARGB(255, 0, 0, 0)),
+                style: TextStyle(color: Colors.black),
               ),
-            ),
+            )
           ],
         ),
       ),

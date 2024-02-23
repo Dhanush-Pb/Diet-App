@@ -51,7 +51,7 @@ class BmiPageWidget extends StatelessWidget {
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(
-              Color.fromARGB(255, 88, 4, 184),
+              const Color.fromARGB(255, 88, 4, 184),
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(

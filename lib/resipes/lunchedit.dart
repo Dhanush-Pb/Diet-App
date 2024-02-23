@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:project/model/data_lunch.dart';
 
@@ -28,12 +28,12 @@ class _LunchEditState extends State<LunchEdit> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Edit Lunch Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),
@@ -150,7 +150,6 @@ class _LunchEditState extends State<LunchEdit> {
 
     var box = await Hive.openBox<LunchMOdel>('lunchrecipes');
     int index = box.values.toList().indexOf(widget.lrfood);
-    print(index);
     widget.lrfood.ingredients = ingredientcontroler.text;
     widget.lrfood.prepration = preprationcontroller.text;
 

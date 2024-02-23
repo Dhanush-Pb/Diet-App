@@ -1,7 +1,7 @@
 // ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:project/Foods/Selected_food.dart';
+
+import 'package:project/Foods/Selected_Food.dart';
 
 class Navcondition extends StatefulWidget {
   final String appbartitle;
@@ -22,8 +22,8 @@ class _NavconditionState extends State<Navcondition> {
           backgroundColor: widget.appbarcolor,
           title: Text(
             widget.appbartitle,
-            style: GoogleFonts.actor(
-                color: const Color.fromARGB(255, 255, 255, 255),
+            style: const TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
                 fontWeight: FontWeight.w700),
           )),
       body: const BrakfastFood(),

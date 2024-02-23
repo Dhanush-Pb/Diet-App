@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:project/db/db_record.dart';
@@ -24,12 +26,12 @@ class _RecordState extends State<Record> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text(
+          title: const Text(
             'Your Records',
-            style: GoogleFonts.actor(
+            style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 25,
-                color: const Color.fromARGB(255, 255, 255, 255)),
+                color: Color.fromARGB(255, 255, 255, 255)),
           ),
           backgroundColor: const Color.fromARGB(255, 48, 109, 221),
         ),
@@ -75,8 +77,8 @@ class _RecordState extends State<Record> {
                                         int totalwater =
                                             getTotalwaterintakeforDate(date);
                                         return Card(
-                                          color:
-                                              Color.fromARGB(255, 92, 92, 194),
+                                          color: const Color.fromARGB(
+                                              255, 92, 92, 194),
                                           elevation: 5,
                                           margin: const EdgeInsets.only(
                                               top: 20, left: 30, right: 30),

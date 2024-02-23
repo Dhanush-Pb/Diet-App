@@ -1,7 +1,9 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:project/model/data_breakfast.dart';
 import 'package:project/resipes/BreakfastEdit.dart';
 
@@ -33,12 +35,12 @@ class BreakfastView extends StatelessWidget {
               ))
         ],
         centerTitle: true,
-        title: Text(
+        title: const Text(
           ' Breakfast Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),

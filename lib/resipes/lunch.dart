@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:project/Foods/style.dart';
 import 'package:project/model/data_lunch.dart';
-import 'package:project/resipes/Lunchmake.dart';
+import 'package:project/resipes/LunchMake.dart';
 import 'package:project/resipes/Lunchview.dart';
 
 class Lunch extends StatefulWidget {
@@ -20,12 +20,12 @@ class _LunchState extends State<Lunch> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Lunch',
-          style: GoogleFonts.actor(
+          style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 25,
-              color: const Color.fromARGB(255, 255, 255, 255)),
+              color: Color.fromARGB(255, 255, 255, 255)),
         ),
         backgroundColor: const Color.fromARGB(255, 120, 184, 196),
       ),
@@ -48,103 +48,127 @@ class _LunchState extends State<Lunch> {
                   valueListenable:
                       Hive.box<LunchMOdel>('lunchrecipes').listenable(),
                   builder: (context, Box<LunchMOdel> box, _) {
-                    return Column(
-                      children: [
-                        GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 10.0,
-                            mainAxisSpacing: 10.0,
+                    if (box.isEmpty) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const SizedBox(
+                            height: 350,
                           ),
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemCount: box.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            LunchMOdel lrfood = box.getAt(index) as LunchMOdel;
+                          styledText('No dishes listed',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: Colors.black),
+                          const CircleAvatar(
+                            radius: 35,
+                            backgroundImage: AssetImage(
+                              'lib/asset/starving.gif',
+                            ),
+                          )
+                        ],
+                      );
+                    } else {
+                      return Column(
+                        children: [
+                          GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 10.0,
+                              mainAxisSpacing: 10.0,
+                            ),
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: box.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              LunchMOdel lrfood =
+                                  box.getAt(index) as LunchMOdel;
 
-                            return GestureDetector(
-                              onTap: () {
-                                // Nav Navigator.of(context).push(
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => Lunchview(
-                                          Lrfood: lrfood,
-                                        )));
-                                //     MaterialPageRoute(builder: (context) ()));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 10),
-                                child: Container(
-                                  decoration: const BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(20),
+                              return GestureDetector(
+                                onTap: () {
+                                  // Nav Navigator.of(context).push(
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => Lunchview(
+                                            Lrfood: lrfood,
+                                          )));
+                                  //     MaterialPageRoute(builder: (context) ()));
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, left: 10, right: 10),
+                                  child: Container(
+                                    decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Color.fromARGB(255, 116, 129, 199),
+                                          Color.fromARGB(255, 140, 180, 206),
+                                        ],
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                      ),
+
+                                      color: Color.fromARGB(255, 214, 200, 191),
+                                      // Replace with your desired color
                                     ),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Color.fromARGB(255, 116, 129, 199),
-                                        Color.fromARGB(255, 140, 180, 206),
+                                    child: Stack(
+                                      children: [
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 15),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                CircleAvatar(
+                                                  radius: 55,
+                                                  backgroundImage: FileImage(
+                                                      File(lrfood.imagepath)),
+                                                  // Replace with your image asset
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  lrfood.title,
+                                                  style: const TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Color.fromARGB(
+                                                          255, 255, 255, 255)),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          right: 3,
+                                          child: IconButton(
+                                            icon: const Icon(
+                                              Icons.delete,
+                                              size: 30,
+                                            ),
+                                            color: Colors.white,
+                                            onPressed: () {
+                                              _deletNotification(lrfood);
+                                              // Handle delete action
+                                              // You ca
+                                              //_n add your delete logic here
+                                            },
+                                          ),
+                                        ),
                                       ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight,
                                     ),
-
-                                    color: Color.fromARGB(255, 214, 200, 191),
-                                    // Replace with your desired color
-                                  ),
-                                  child: Stack(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 15),
-                                        child: Center(
-                                          child: Column(
-                                            children: [
-                                              CircleAvatar(
-                                                radius: 55,
-                                                backgroundImage: FileImage(
-                                                    File(lrfood.imagepath)),
-                                                // Replace with your image asset
-                                              ),
-                                              const SizedBox(
-                                                height: 10,
-                                              ),
-                                              Text(
-                                                lrfood.title,
-                                                style: GoogleFonts.actor(
-                                                    fontWeight: FontWeight.w500,
-                                                    color: const Color.fromARGB(
-                                                        255, 255, 255, 255)),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        right: 3,
-                                        child: IconButton(
-                                          icon: const Icon(
-                                            Icons.delete,
-                                            size: 30,
-                                          ),
-                                          color: Colors.white,
-                                          onPressed: () {
-                                            _deletNotification(lrfood);
-                                            // Handle delete action
-                                            // You ca
-                                            //_n add your delete logic here
-                                          },
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                 ),
-                              ),
-                            );
-                          },
-                        ),
-                      ],
-                    );
+                              );
+                            },
+                          ),
+                        ],
+                      );
+                    }
                   })),
         ),
       ),

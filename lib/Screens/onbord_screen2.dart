@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:lottie/lottie.dart';
 import 'package:project/Screens/onbord_screen1.dart';
 import 'package:project/Screens/onbord_screen3.dart';
@@ -16,6 +16,7 @@ class _InBorder1State extends State<InBorder22> {
   @override
   Widget build(BuildContext context) {
     final screenwidth = MediaQuery.of(context).size.width;
+    // ignore: non_constant_identifier_names
     final Screenheight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -79,24 +80,21 @@ class _InBorder1State extends State<InBorder22> {
               height: 100,
             ),
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const InBorder2()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                  minimumSize: const Size(100, 40) // Set the text color here
-                  ),
-              child: Text(
-                'Next',
-                style: GoogleFonts.actor(
-                    fontWeight: FontWeight.w600,
-                    color: const Color.fromARGB(255, 0, 0, 0)),
-              ),
-            ),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const InBorder2()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                    minimumSize: const Size(100, 40) // Set the text color here
+                    ),
+                child: const Text(
+                  'Next',
+                  style: TextStyle(color: Colors.black),
+                )),
           ],
         ),
       ),

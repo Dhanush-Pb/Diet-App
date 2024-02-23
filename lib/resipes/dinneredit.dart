@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:project/model/data_dinner.dart';
@@ -19,7 +19,6 @@ class _DinnerEditState extends State<DinnerEdit> {
 
   @override
   void initState() {
-    // TODO: implement initState
     ingredientcontroler.text = widget.drfood.ingredients;
     preprationcontroller.text = widget.drfood.prepration;
     super.initState();
@@ -30,12 +29,12 @@ class _DinnerEditState extends State<DinnerEdit> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Edit Dinner Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: const Color.fromARGB(255, 255, 255, 255),
+            color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 77, 87, 182),
@@ -153,7 +152,6 @@ class _DinnerEditState extends State<DinnerEdit> {
 
     var box = await Hive.openBox<DinnerModel>('dinnerecipes');
     int index = box.values.toList().indexOf(widget.drfood);
-    print(index);
     widget.drfood.ingredients = ingredientcontroler.text;
     widget.drfood.prepration = preprationcontroller.text;
 

@@ -1,7 +1,9 @@
+// ignore_for_file: file_names
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project/model/data_lunch.dart';
@@ -30,7 +32,7 @@ class _LunchmakeState extends State<Lunchmake> {
         centerTitle: true,
         title: Text(
           'Create Lunch Recipe',
-          style: GoogleFonts.actor(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize:
                 screenWidth * 0.06, // Adjust font size based on screen width
