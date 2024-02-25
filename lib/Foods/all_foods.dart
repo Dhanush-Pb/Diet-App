@@ -255,7 +255,7 @@ class _BreakfastfoodsListState extends State<BreakfastfoodsList> {
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: filterdfooditems.length,
                           separatorBuilder: (BuildContext context, int index) {
-                            return const Padding(
+                            return  const Padding(
                               padding: EdgeInsets.only(
                                   left: 9, right: 9, top: 5, bottom: 5),
                               child: Divider(
@@ -282,7 +282,7 @@ class _BreakfastfoodsListState extends State<BreakfastfoodsList> {
                                           Icons.add,
                                           color:
                                               Color.fromARGB(255, 38, 151, 34),
-                                        )),
+                                        )), 
                                   ],
                                 ),
                                 title: Text(
