@@ -88,9 +88,6 @@ class _AddyfoodState extends State<Addyfood> {
                       SizedBox(
                         height: screenHeight * 0.2,
                       ),
-                      SizedBox(
-                        height: 0,
-                      ),
                       Padding(
                         padding: const EdgeInsets.only(left: 25, right: 25),
                         child: TextFormField(
